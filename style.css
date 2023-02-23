@@ -182,3 +182,14 @@ span {
 .tasklist {
     color: white;
 }
+
+@media screen and (max-width: 600px) {
+    
+    .clock{
+        margin: auto;
+    }
+    .container{
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, auto);
+    }
+  }
