@@ -47,8 +47,7 @@ body {
         inset -4px -4px 10px rgba(67, 67, 67, 0.5),
         4px 4px 10px rgba(0, 0, 0, 0.3);
     border-radius: 50%;
-    margin-left: 20px;
-    margin-top: 20px;
+    margin: 20px auto;
 }
 
 .outer-clock-face {
@@ -184,10 +183,6 @@ span {
 }
 
 @media screen and (max-width: 600px) {
-    
-    .clock{
-        margin: auto;
-    }
     .container{
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(1, auto);
