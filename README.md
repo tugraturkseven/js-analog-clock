@@ -25,3 +25,6 @@ You can customize the clock by editing the CSS and JavaScript files in the repos
 # How it looks.
 
 ![gif](https://user-images.githubusercontent.com/28603785/219970057-67631900-e18d-42a3-8105-ffb87dfb32c1.gif)
+
+# Youtube Video for implementation.
+https://www.youtube.com/watch?v=rsLiimCQuC8
