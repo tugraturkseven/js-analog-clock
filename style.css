@@ -107,7 +107,7 @@ body {
 }
 
 
-span {
+.inner-clock-face>span{
     font-weight: 600;
     color: white;
     border-radius: 50%;
@@ -178,9 +178,44 @@ span {
     height: 2px;
 }
 
-.tasklist {
+.task-container {
     color: white;
 }
+
+
+#taskInput{
+    background-color: #282828;
+    border: 0;
+    border-bottom: 1px solid #50F3F5;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+}
+
+#taskInput:focus{
+    outline: 0;
+    border-bottom: 1px solid white;
+    transition: 0.3s ease-in-out;
+}
+
+#timeInput{
+    background-color: #282828;
+    color: #61afff;
+    border: 0;
+    width: 50px;
+    cursor: pointer;
+}
+
+#add{
+    background-color: #282828;
+    color: #bdbdcb;
+    border-radius: 0.5rem;
+    border: 1px solid #50F3F5;
+    padding: 5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
 
 @media screen and (max-width: 600px) {
     .container{

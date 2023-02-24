@@ -1,6 +1,10 @@
 const secondHand = document.querySelector('.second-hand');
 const minsHand = document.querySelector('.min-hand');
 const hourHand = document.querySelector('.hour-hand');
+const addBtn = document.getElementById('add');
+
+var taskInput = document.getElementById('taskInput');
+var timeInput = document.getElementById('timeInput');
 
 function setDate() {
     const now = new Date();
