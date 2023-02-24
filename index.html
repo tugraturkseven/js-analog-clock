@@ -47,9 +47,13 @@
             <h2 id="taskheader">⏰ Task List</h2>
             <input type="text" id="taskInput" placeholder="What is the task?">
             <input type="time" id="timeInput" required>
-            <button id="add">+</button>
+            <button id="add" onclick="addTask()">Add</button>
             <div class="tasklist">
-                <p class="task">Meet with Recep. <span class="task-time">11:00</span><button id="editBtn">✏️</button><button id="deleteBtn">🗑️ </button></p>
+                <p class="task">Meet with Recep.
+                    <span class="task-time">11:00</span>
+                    <button id="editBtn" class="hide">✏️</button>
+                    <button id="deleteBtn" class="hide">🗑️</button>
+                </p>
             </div>
         </div>
 

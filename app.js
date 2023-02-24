@@ -1,11 +1,13 @@
 const secondHand = document.querySelector('.second-hand');
 const minsHand = document.querySelector('.min-hand');
 const hourHand = document.querySelector('.hour-hand');
+const taskList = document.querySelector('.tasklist');
 const addBtn = document.getElementById('add');
 const editBtn = document.getElementById('editBtn');
 const deleteBtn = document.getElementById('deleteBtn');
 const taskInput = document.getElementById('taskInput');
 const timeInput = document.getElementById('timeInput');
+
 
 function setDate() {
     const now = new Date();
@@ -26,3 +28,21 @@ function setDate() {
 setInterval(setDate, 1000)
 
 setDate();
+
+addTask = () => {
+    task = document.createElement('p');
+    task.innerHTML = taskInput.value;
+
+    taskTime = document.createElement('span');
+    taskTime.innerHTML = timeInput.value;
+
+    task.classList.add('task');
+    taskTime.classList.add('task-time');
+
+    task.appendChild(taskTime);
+    task.appendChild(editBtn);
+    task.appendChild(deleteBtn);
+
+    taskList.appendChild(task);
+    console.log('çalıştı');
+}

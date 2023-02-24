@@ -1,6 +1,6 @@
 @import url('https://fonts.cdnfonts.com/css/helvetica-2');
 
-*{
+* {
     box-sizing: border-box;
 }
 
@@ -17,12 +17,12 @@ body {
     min-height: 100vh;
 }
 
-.container{
+.container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, auto);
     grid-column-gap: 0px;
-    grid-row-gap: 0px; 
+    grid-row-gap: 0px;
 }
 
 
@@ -107,7 +107,7 @@ body {
 }
 
 
-.inner-clock-face>span{
+.inner-clock-face>span {
     font-weight: 600;
     color: white;
     border-radius: 50%;
@@ -183,57 +183,70 @@ body {
 }
 
 
-#taskInput{
+#taskInput {
     background-color: #282828;
     border: 0;
-    border-bottom: 1px solid #50F3F5;
+    border-bottom: 1px solid #ee791a;
     color: white;
     text-align: center;
     font-weight: 500;
 }
 
-#taskInput:focus{
+#taskInput:focus {
     outline: 0;
     border-bottom: 1px solid white;
     transition: 0.3s ease-in-out;
 }
 
-#timeInput{
+#timeInput {
     background-color: #282828;
-    color: #61afff;
+    color: #ee791a;
     border: 0;
-    width: 50px;
     cursor: pointer;
+    outline: none;
+    font-weight: 600;
 }
 
-#add{
+#timeInput::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+#add {
     background-color: #282828;
-    color: #bdbdcb;
-    border-radius: 0.5rem;
-    border: 1px solid #50F3F5;
+    color: #ee791a;
+    border: 0;
     padding: 5px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
 }
 
-#editBtn,#deleteBtn{
+#editBtn,
+#deleteBtn {
     background-color: #282828;
     border: 0;
     margin: 0 5px;
+    font-size: 16px;
 }
 
-#editBtn:hover,#deleteBtn:hover{
+#editBtn:hover,
+#deleteBtn:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
 
-.hide{
+.hide {
     display: none;
 }
 
+.task:hover #editBtn,
+.task:hover #deleteBtn {
+    display: initial;
+}
+
 @media screen and (max-width: 600px) {
-    .container{
+    .container {
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(1, auto);
     }
-  }
+}
