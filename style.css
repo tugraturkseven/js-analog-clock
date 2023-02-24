@@ -216,6 +216,20 @@ body {
     cursor: pointer;
 }
 
+#editBtn,#deleteBtn{
+    background-color: #282828;
+    border: 0;
+    margin: 0 5px;
+}
+
+#editBtn:hover,#deleteBtn:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.hide{
+    display: none;
+}
 
 @media screen and (max-width: 600px) {
     .container{
