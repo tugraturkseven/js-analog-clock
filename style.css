@@ -211,7 +211,9 @@ body {
     display: none;
 }
 
-#add {
+#add,
+#update,
+#cancel {
     background-color: #282828;
     color: #ee791a;
     border: 0;

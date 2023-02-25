@@ -46,14 +46,12 @@
         <div class="task-container">
             <h2 id="taskheader">⏰ Task List</h2>
             <input type="text" id="taskInput" placeholder="What is the task?">
-            <input type="time" id="timeInput" required>
+            <input type="time" id="timeInput">
             <button id="add" onclick="addTask()">Add</button>
+            <button id="update" onclick="updateTask()" class="hide">OK</button>
+            <button id="cancel" onclick="cancelEdit()" class="hide">Cancel</button>
             <div class="tasklist">
-                <p class="task">Meet with Recep.
-                    <span class="task-time">11:00</span>
-                    <button id="editBtn" class="hide">✏️</button>
-                    <button id="deleteBtn" class="hide">🗑️</button>
-                </p>
+
             </div>
         </div>
 
