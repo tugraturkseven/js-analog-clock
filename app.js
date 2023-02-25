@@ -54,7 +54,7 @@ editTask = (selectedTask) => {
     taskID = taskArr.indexOf(selectedTask.parentElement);
     task = taskArr[taskID].innerText;
     taskTime = taskArr[taskID].firstChild.innerHTML;
-    console.log(task + ' ' + taskTime);
+
     taskInput.innerText = task;
     timeInput.innerHTML = taskTime;
 
