@@ -182,6 +182,26 @@ body {
     color: white;
 }
 
+.tasklist{
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.task{
+    background-color: #282828;
+    color: white;
+    border: 0;
+    cursor: default;
+    text-align: center;
+    font-size: 16px;
+}
+
+.task:focus{
+    outline: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -moz-user-select: none;
+}
 
 #taskInput {
     background-color: #282828;
@@ -241,11 +261,26 @@ body {
     display: none;
 }
 
-.task:hover #editBtn,
-.task:hover #deleteBtn {
+li{
+    list-style: none;
+    text-align: center;
+    margin-top: 20px;
+}
+
+li:hover #editBtn,
+li:hover #deleteBtn {
     display: initial;
 }
 
+.editmode{
+    background-color: #282828;
+    color: white;
+    border: 0;
+    border-bottom: 1px solid white;
+    text-align: center;
+    font-size: 16px;
+    outline: 0;
+}
 @media screen and (max-width: 600px) {
     .container {
         grid-template-columns: repeat(1, 1fr);

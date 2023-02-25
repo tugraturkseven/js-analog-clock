@@ -39,45 +39,43 @@ addTask = () => {
     let newTask = createTask(taskInput.value, timeInput.value)
     taskList.appendChild(newTask);
 
-    const taskObj = Object.create(task);
-    taskObj.taskDescription = taskInput.value;
-    taskObj.taskTime = timeInput.value;
-    taskObj.taskID = taskArr.length + 1;
-    taskArr.push(taskObj);
-
     taskInput.value = '';
     timeInput.value = '';
 }
 
 editTask = (selectedTask) => {
 
-    taskID = taskArr.indexOf(selectedTask.parentElement);
-    task = taskArr[taskID].innerText;
-    taskTime = taskArr[taskID].firstChild.innerHTML;
+    let selected = selectedTask.parentElement.firstChild;
 
-    taskInput.innerText = task;
-    timeInput.innerHTML = taskTime;
-
-
-    addBtn.classList.add('hide');
-    updateBtn.classList.remove('hide');
-    cancelBtn.classList.remove('hide');
-
+    if(selected.readOnly == true){
+        selected.readOnly = false;
+        selectedTask.innerText = '✔️';
+        selected.classList.remove('task');
+        selected.classList.add('editmode');
+    }else{
+        selected.readOnly = true;
+        selected.classList.remove('editmode');
+        selected.classList.add('task');
+        selectedTask.innerText = '✏️';
+    }
+    
 }
 
 createTask = (taskDesc, taskHour) => {
-    let pElm, sElm, edit, dlt;
+    let liElm,inputElm, sElm, edit, dlt;
 
-    pElm = document.createElement('p');
-    pElm.innerHTML = taskDesc;
+    liElm = document.createElement('li');
+
+    inputElm = document.createElement('input');
+    inputElm.value = taskDesc;
 
     sElm = document.createElement('span');
     sElm.innerHTML = taskHour;
 
-    pElm.classList.add('task');
+    inputElm.setAttribute('readonly','readonly')
+    inputElm.classList.add('task');
     sElm.classList.add('task-time');
 
-    pElm.appendChild(sElm);
 
     edit = document.createElement('button');
     edit.innerText = '✏️';
@@ -92,8 +90,10 @@ createTask = (taskDesc, taskHour) => {
     dlt.setAttribute('id', 'deleteBtn');
     dlt.setAttribute('onclick', 'deleteTask()');
 
-    pElm.appendChild(edit);
-    pElm.appendChild(dlt);
+    liElm.appendChild(inputElm);
+    liElm.appendChild(sElm);
+    liElm.appendChild(edit);
+    liElm.appendChild(dlt);
 
-    return pElm;
+    return liElm;
 }
