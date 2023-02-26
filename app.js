@@ -14,6 +14,7 @@ var task = { taskID: '', taskDescription: '', taskTime: '' };
 var taskArr = [];
 
 
+
 function setDate() {
     const now = new Date();
 
@@ -35,46 +36,65 @@ setInterval(setDate, 1000)
 setDate();
 
 addTask = () => {
+    if (taskInput.value != "" && timeInput.value != "") {
+        let newTask = createTask(taskInput.value, timeInput.value)
+        taskList.appendChild(newTask);
 
-    let newTask = createTask(taskInput.value, timeInput.value)
-    taskList.appendChild(newTask);
+        taskInput.value = '';
+        timeInput.value = '';
+    } else {
+        alert('Lütfen bilgileri boş bırakmayınız!');
+    }
 
-    taskInput.value = '';
-    timeInput.value = '';
 }
 
 editTask = (selectedTask) => {
 
     let selected = selectedTask.parentElement.firstChild;
+    let timeEdit = selectedTask.previousSibling;
 
-    if(selected.readOnly == true){
+    if (selected.readOnly == true) {
         selected.readOnly = false;
+        timeEdit.readOnly = false;
+
         selectedTask.innerText = '✔️';
+
+
         selected.classList.remove('task');
         selected.classList.add('editmode');
-    }else{
+        timeEdit.classList.remove('task-time');
+        timeEdit.classList.add('time-edit-mode');
+    } else {
         selected.readOnly = true;
+        timeEdit.readOnly = true;
+
         selected.classList.remove('editmode');
         selected.classList.add('task');
+        timeEdit.classList.remove('time-edit-mode');
+        timeEdit.classList.add('task-time');
+
         selectedTask.innerText = '✏️';
     }
-    
+
 }
 
 createTask = (taskDesc, taskHour) => {
-    let liElm,inputElm, sElm, edit, dlt;
+    let liElm, inputElm, timeElm, edit, dlt;
 
     liElm = document.createElement('li');
 
     inputElm = document.createElement('input');
     inputElm.value = taskDesc;
 
-    sElm = document.createElement('span');
-    sElm.innerHTML = taskHour;
+    timeElm = document.createElement('input');
+    timeElm.setAttribute('type', 'time');
+    timeElm.setAttribute('readonly', 'readonly');
+    timeElm.classList.add('task-time');
+    timeElm.value = taskHour;
 
-    inputElm.setAttribute('readonly','readonly')
+
+    inputElm.setAttribute('readonly', 'readonly')
     inputElm.classList.add('task');
-    sElm.classList.add('task-time');
 
 
     edit = document.createElement('button');
@@ -88,12 +108,18 @@ createTask = (taskDesc, taskHour) => {
     dlt.innerText = '🗑️';
     dlt.classList.add('hide');
     dlt.setAttribute('id', 'deleteBtn');
-    dlt.setAttribute('onclick', 'deleteTask()');
+    dlt.setAttribute('onclick', 'deleteTask(this)');
 
     liElm.appendChild(inputElm);
-    liElm.appendChild(sElm);
+    liElm.appendChild(timeElm);
     liElm.appendChild(edit);
     liElm.appendChild(dlt);
 
     return liElm;
+}
+
+
+deleteTask = (selectedTask) => {
+    let selected = selectedTask.parentElement;
+    taskList.removeChild(selected);
 }

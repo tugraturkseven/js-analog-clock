@@ -182,12 +182,12 @@ body {
     color: white;
 }
 
-.tasklist{
+.tasklist {
     max-height: 300px;
     overflow-y: scroll;
 }
 
-.task{
+.task {
     background-color: #282828;
     color: white;
     border: 0;
@@ -196,7 +196,7 @@ body {
     font-size: 16px;
 }
 
-.task:focus{
+.task:focus {
     outline: none;
     -webkit-user-select: none;
     user-select: none;
@@ -206,7 +206,7 @@ body {
 #taskInput {
     background-color: #282828;
     border: 0;
-    border-bottom: 1px solid #ee791a;
+    border-bottom: 1px solid #61afff;
     color: white;
     text-align: center;
     font-weight: 500;
@@ -220,22 +220,27 @@ body {
 
 #timeInput {
     background-color: #282828;
-    color: #ee791a;
+    color: #61afff;
     border: 0;
-    cursor: pointer;
     outline: none;
     font-weight: 600;
+    width: 28px;
+    cursor: initial;
 }
 
 #timeInput::-webkit-calendar-picker-indicator {
-    display: none;
+    scale: 1.5;
+    cursor: pointer;
+    filter: invert(64%) sepia(22%) saturate(1932%) hue-rotate(184deg) brightness(101%) contrast(101%);
 }
+
+
 
 #add,
 #update,
 #cancel {
     background-color: #282828;
-    color: #ee791a;
+    color: #61afff;
     border: 0;
     padding: 5px;
     font-size: 16px;
@@ -261,7 +266,7 @@ body {
     display: none;
 }
 
-li{
+li {
     list-style: none;
     text-align: center;
     margin-top: 20px;
@@ -272,7 +277,7 @@ li:hover #deleteBtn {
     display: initial;
 }
 
-.editmode{
+.editmode {
     background-color: #282828;
     color: white;
     border: 0;
@@ -281,6 +286,33 @@ li:hover #deleteBtn {
     font-size: 16px;
     outline: 0;
 }
+
+.task-time {
+    background-color: #282828;
+    border: 0;
+    font-size: 16px;
+    text-align: center;
+    color: white;
+    outline: 0;
+
+}
+
+.time-edit-mode {
+    background-color: #282828;
+    color: rgb(255, 255, 255);
+    border: 0;
+    outline: none;
+    font-weight: 600;
+    width: 28px;
+    cursor: initial;
+}
+
+.time-edit-mode::-webkit-calendar-picker-indicator {
+    scale: 1.5;
+    cursor: pointer;
+    filter: invert(100%) sepia(4%) saturate(0%) hue-rotate(56deg) brightness(116%) contrast(100%);
+}
+
 @media screen and (max-width: 600px) {
     .container {
         grid-template-columns: repeat(1, 1fr);
