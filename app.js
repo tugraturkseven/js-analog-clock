@@ -10,14 +10,9 @@ const timeInput = document.getElementById('timeInput');
 const updateBtn = document.getElementById('update');
 const cancelBtn = document.getElementById('cancel');
 
-var task = { taskID: '', taskDescription: '', taskTime: '' };
-var taskArr = [];
-
-
 
 function setDate() {
     const now = new Date();
-
     const seconds = now.getSeconds();
     const secondsDegrees = ((seconds / 60) * 360) + 90;
     secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
@@ -29,6 +24,9 @@ function setDate() {
     const hour = now.getHours();
     const hourDegrees = ((hour / 12) * 360) + ((mins / 60) * 30) + 90;
     hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+
+    const taskArr = Array.from(taskList.children);
+    if (taskArr.length > 0) checkAlarm(taskArr, hour, mins, seconds);
 }
 
 setInterval(setDate, 1000)
@@ -45,7 +43,6 @@ addTask = () => {
     } else {
         alert('Lütfen bilgileri boş bırakmayınız!');
     }
-
 }
 
 editTask = (selectedTask) => {
@@ -122,4 +119,12 @@ createTask = (taskDesc, taskHour) => {
 deleteTask = (selectedTask) => {
     let selected = selectedTask.parentElement;
     taskList.removeChild(selected);
+}
+
+checkAlarm = (tasks, hour, mins, secs) => {
+    tasks.forEach(item => {
+        let alertTime = item.firstChild.nextSibling.value + ':' + '0';
+        let currTime = hour + ':' + mins + ':' + secs;
+        if (alertTime == currTime) alert(item.firstChild.value + ' Görevi için alarm!');
+    })
 }
