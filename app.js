@@ -10,6 +10,7 @@ const timeInput = document.getElementById('timeInput');
 const updateBtn = document.getElementById('update');
 const cancelBtn = document.getElementById('cancel');
 
+const alertAudio = new Audio('assets/alert.mp3.mp3');
 
 function setDate() {
     const now = new Date();
@@ -122,9 +123,24 @@ deleteTask = (selectedTask) => {
 }
 
 checkAlarm = (tasks, hour, mins, secs) => {
+    hour = fixTime(hour);
+    mins = fixTime(mins);
+    secs = fixTime(secs);
+
     tasks.forEach(item => {
-        let alertTime = item.firstChild.nextSibling.value + ':' + '0';
+        let alertTime = item.firstChild.nextSibling.value + ':' + '00';
         let currTime = hour + ':' + mins + ':' + secs;
-        if (alertTime == currTime) alert(item.firstChild.value + ' Görevi için alarm!');
+        if (alertTime == currTime){
+            alertAudio.play();
+            alert(item.firstChild.value + ' görevi için alarm!');
+        } 
     })
+}
+
+fixTime = (x) =>{
+    if(x<10){
+        x = '0' + x;
+    }
+    
+    return x;
 }
