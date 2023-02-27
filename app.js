@@ -7,8 +7,7 @@ const editBtn = document.getElementById('editBtn');
 const deleteBtn = document.getElementById('deleteBtn');
 const taskInput = document.getElementById('taskInput');
 const timeInput = document.getElementById('timeInput');
-const updateBtn = document.getElementById('update');
-const cancelBtn = document.getElementById('cancel');
+
 
 const alertAudio = new Audio('assets/alert.mp3.mp3');
 
@@ -130,17 +129,16 @@ checkAlarm = (tasks, hour, mins, secs) => {
     tasks.forEach(item => {
         let alertTime = item.firstChild.nextSibling.value + ':' + '00';
         let currTime = hour + ':' + mins + ':' + secs;
-        if (alertTime == currTime){
+        if (alertTime == currTime) {
             alertAudio.play();
             alert(item.firstChild.value + ' görevi için alarm!');
-        } 
+        }
     })
 }
 
-fixTime = (x) =>{
-    if(x<10){
+fixTime = (x) => {
+    if (x < 10) {
         x = '0' + x;
     }
-    
     return x;
 }
