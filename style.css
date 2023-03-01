@@ -251,9 +251,7 @@ body {
 
 
 
-#add,
-#update,
-#cancel {
+#add {
     background-color: #282828;
     color: #61afff;
     border: 0;
@@ -277,9 +275,6 @@ body {
     transform: scale(1.1);
 }
 
-.hide {
-    display: none;
-}
 
 li {
     list-style: none;
@@ -287,10 +282,7 @@ li {
     margin-top: 20px;
 }
 
-li:hover #editBtn,
-li:hover #deleteBtn {
-    display: initial;
-}
+
 
 .editmode {
     background-color: #282828;
@@ -309,7 +301,6 @@ li:hover #deleteBtn {
     text-align: center;
     color: white;
     outline: 0;
-
 }
 
 .time-edit-mode {

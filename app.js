@@ -41,7 +41,9 @@ addTask = () => {
         taskInput.value = '';
         timeInput.value = '';
     } else {
-        alert('Lütfen bilgileri boş bırakmayınız!');
+        if(taskInput.value=="")
+        alert('Lütfen görev bilgisini boş bırakmayınız!');
+        else alert('Lütfen görev zamanını seçiniz!');
     }
 }
 
@@ -96,14 +98,12 @@ createTask = (taskDesc, taskHour) => {
 
     edit = document.createElement('button');
     edit.innerText = '✏️';
-    edit.classList.add('hide');
     edit.setAttribute('id', 'editBtn')
     edit.setAttribute('onclick', 'editTask(this)');
 
 
     dlt = document.createElement('button');
     dlt.innerText = '🗑️';
-    dlt.classList.add('hide');
     dlt.setAttribute('id', 'deleteBtn');
     dlt.setAttribute('onclick', 'deleteTask(this)');
 
@@ -132,6 +132,7 @@ checkAlarm = (tasks, hour, mins, secs) => {
         if (alertTime == currTime) {
             alertAudio.play();
             alert(item.firstChild.value + ' görevi için alarm!');
+            item.firstChild.style.textDecoration = 'line-through';
         }
     })
 }
