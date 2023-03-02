@@ -7,9 +7,9 @@ const editBtn = document.getElementById('editBtn');
 const deleteBtn = document.getElementById('deleteBtn');
 const taskInput = document.getElementById('taskInput');
 const timeInput = document.getElementById('timeInput');
-
-
 const alertAudio = new Audio('assets/alert.mp3.mp3');
+
+var taskArr = Array.from(taskList.children);
 
 function setDate() {
     const now = new Date();
@@ -25,7 +25,6 @@ function setDate() {
     const hourDegrees = ((hour / 12) * 360) + ((mins / 60) * 30) + 90;
     hourHand.style.transform = `rotate(${hourDegrees}deg)`;
 
-    const taskArr = Array.from(taskList.children);
     if (taskArr.length > 0) checkAlarm(taskArr, hour, mins, seconds);
 }
 
@@ -35,14 +34,16 @@ setDate();
 
 addTask = () => {
     if (taskInput.value != "" && timeInput.value != "") {
-        let newTask = createTask(taskInput.value, timeInput.value)
-        taskList.appendChild(newTask);
+        let newTask = createTask(taskInput.value, timeInput.value);
+        taskArr.push(newTask);
+        sortTasks();
+
 
         taskInput.value = '';
         timeInput.value = '';
     } else {
-        if(taskInput.value=="")
-        alert('Lütfen görev bilgisini boş bırakmayınız!');
+        if (taskInput.value == "")
+            alert('Lütfen görev bilgisini boş bırakmayınız!');
         else alert('Lütfen görev zamanını seçiniz!');
     }
 }
@@ -142,4 +143,26 @@ fixTime = (x) => {
         x = '0' + x;
     }
     return x;
+}
+
+sortTasks = () => {
+    taskArr.sort((a, b) => {
+        const firstTaskTime = a.firstChild.nextSibling.value;
+        const secondTaskTime = b.firstChild.nextSibling.value;
+        const firstTaskHour = Number(firstTaskTime.slice(0, 2));
+        const firstTaskMinute = Number(firstTaskTime.slice(3));
+        const secondTaskHour = Number(secondTaskTime.slice(0, 2));
+        const secondTaskMinute = Number(secondTaskTime.slice(3));
+
+        console.log(firstTaskHour, firstTaskMinute, secondTaskHour, secondTaskMinute);
+
+        if (firstTaskHour - secondTaskHour == 0) {
+            return firstTaskMinute - secondTaskMinute;
+        } else return firstTaskHour - secondTaskHour;
+    });
+
+    taskList.innerHTML = "";
+    taskArr.forEach(item => {
+        taskList.appendChild(item);
+    });
 }
