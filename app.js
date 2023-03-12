@@ -38,6 +38,25 @@ addTask = () => {
         taskArr.push(newTask);
         sortTasks();
 
+        const data = {
+            task: taskInput.value,
+            time: timeInput.value,
+        };
+
+        fetch("http://localhost:8080/api/todos/", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+            .then((response) => response.json())
+            .then((sts) => {
+                console.log("Success");
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
 
         taskInput.value = '';
         timeInput.value = '';
@@ -75,6 +94,7 @@ editTask = (selectedTask) => {
 
         selectedTask.innerText = '✏️';
     }
+
 
 }
 
