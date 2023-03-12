@@ -11,22 +11,7 @@ const alertAudio = new Audio('assets/alert.mp3.mp3');
 
 var taskArr = [];
 
-fetch("http://localhost:8080/api/todos/")
-    .then((response) => response.json())
-    .then((sts) => {
-        readFromDatabase(sts);
-    })
-    .catch((error) => {
-        console.error("Error:", error);
-    });
 
-readFromDatabase = (objArr) => {
-    objArr.data.forEach((item) => {
-        const task = createTask(item._id, item.task, item.time)
-        taskArr.push(task);
-    });
-    sortTasks();
-}
 
 function setDate() {
     const now = new Date();
@@ -49,11 +34,11 @@ setInterval(setDate, 1000)
 
 setDate();
 
+
+
+
 addTask = () => {
     if (taskInput.value != "" && timeInput.value != "") {
-        let newTask = createTask(taskInput.value, timeInput.value);
-        taskArr.push(newTask);
-        sortTasks();
 
         const data = {
             task: taskInput.value,
@@ -70,6 +55,7 @@ addTask = () => {
             .then((response) => response.json())
             .then((sts) => {
                 console.log("Success");
+                readFromDatabase();
             })
             .catch((error) => {
                 console.error("Error:", error);
@@ -77,6 +63,8 @@ addTask = () => {
 
         taskInput.value = '';
         timeInput.value = '';
+
+
     } else {
         if (taskInput.value == "")
             alert('Lütfen görev bilgisini boş bırakmayınız!');
@@ -203,3 +191,24 @@ sortTasks = () => {
         taskList.appendChild(item);
     });
 }
+
+// Read tasks from database
+
+readFromDatabase = () => {
+    fetch("http://localhost:8080/api/todos/")
+        .then((response) => response.json())
+        .then((sts) => {
+            taskArr = [];
+            sts.data.forEach((item) => {
+                const task = createTask(item._id, item.task, item.time)
+
+                taskArr.push(task);
+            })
+            sortTasks();
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+}
+
+readFromDatabase();
