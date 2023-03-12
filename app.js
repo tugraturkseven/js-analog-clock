@@ -9,7 +9,24 @@ const taskInput = document.getElementById('taskInput');
 const timeInput = document.getElementById('timeInput');
 const alertAudio = new Audio('assets/alert.mp3.mp3');
 
-var taskArr = Array.from(taskList.children);
+var taskArr = [];
+
+fetch("http://localhost:8080/api/todos/")
+    .then((response) => response.json())
+    .then((sts) => {
+        readFromDatabase(sts);
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
+
+readFromDatabase = (objArr) => {
+    objArr.data.forEach((item) => {
+        const task = createTask(item._id, item.task, item.time)
+        taskArr.push(task);
+    });
+    sortTasks();
+}
 
 function setDate() {
     const now = new Date();
@@ -98,7 +115,7 @@ editTask = (selectedTask) => {
 
 }
 
-createTask = (taskDesc, taskHour) => {
+createTask = (id, taskDesc, taskHour) => {
     let liElm, inputElm, timeElm, edit, dlt;
 
     liElm = document.createElement('li');
@@ -132,6 +149,7 @@ createTask = (taskDesc, taskHour) => {
     liElm.appendChild(timeElm);
     liElm.appendChild(edit);
     liElm.appendChild(dlt);
+    liElm.setAttribute('id', id);
 
     return liElm;
 }
@@ -174,7 +192,6 @@ sortTasks = () => {
         const secondTaskHour = Number(secondTaskTime.slice(0, 2));
         const secondTaskMinute = Number(secondTaskTime.slice(3));
 
-        console.log(firstTaskHour, firstTaskMinute, secondTaskHour, secondTaskMinute);
 
         if (firstTaskHour - secondTaskHour == 0) {
             return firstTaskMinute - secondTaskMinute;
