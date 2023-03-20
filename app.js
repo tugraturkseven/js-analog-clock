@@ -75,7 +75,9 @@ addTask = () => {
 editTask = (selectedTask) => {
 
     let selected = selectedTask.parentElement.firstChild;
+    let id = selectedTask.parentElement.id;
     let timeEdit = selectedTask.previousSibling;
+
 
     if (selected.readOnly == true) {
         selected.readOnly = false;
@@ -96,6 +98,29 @@ editTask = (selectedTask) => {
         selected.classList.add('task');
         timeEdit.classList.remove('time-edit-mode');
         timeEdit.classList.add('task-time');
+
+        const data = {
+            task: selected.value,
+            time: timeEdit.value,
+        };
+
+        fetch(`http://localhost:8080/api/todos/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+            .then((response) => response.json())
+            .then((sts) => {
+                console.log("Success");
+                readFromDatabase();
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+
+        
 
         selectedTask.innerText = '✏️';
     }
@@ -145,7 +170,24 @@ createTask = (id, taskDesc, taskHour) => {
 
 deleteTask = (selectedTask) => {
     let selected = selectedTask.parentElement;
+    let id = selectedTask.parentElement.id;
     taskList.removeChild(selected);
+
+    fetch(`http://localhost:8080/api/todos/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+        .then((response) => response.json())
+        .then((sts) => {
+            console.log("Success");
+            readFromDatabase();
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+    
 }
 
 checkAlarm = (tasks, hour, mins, secs) => {
