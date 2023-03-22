@@ -1,26 +1,44 @@
-# js-analog-clock
+# Analog Clock with To-Do List Application
 
-# How to clone
+This repository contains an analog clock design with a to-do list application built using HTML, CSS, and JavaScript. The application allows users to add, delete, and update tasks, with an alarm that warns them when the task time is reached. The tasks are listed in ascending order based on the due date and time.
 
-Open a command-line interface (CLI) on your computer, such as the terminal on macOS/Linux or Command Prompt on Windows.
+# Features
 
-Navigate to the directory where you want to clone the repository. For example, if you want to clone the repository to your desktop, you can type:
+    Add, delete, and update tasks
+    Alarm to remind users when the task time is reached
+    Tasks are sorted in ascending order based on the due date and time
+    Switch between databases using query params (?db=0 for MongoDB and ?db=1 for MySQL)
 
-cd ~/Desktop
+# Requirements
 
-Clone the repository by typing the following command:
-git clone https://github.com/tugraturkseven/js-analog-clock.git
+    Node.js
+    MongoDB or MySQL
 
+# Installation
 
-Once the repository is cloned, you will see a new folder named "js-analog-clock" in your current directory.
+    Clone this repository using git clone https://github.com/tugraturkseven/js-analog-clock.git
+    Run npm install to install the required packages.
+    Start the application using npm start.
+    Open the application in a web browser at http://localhost:3000/.
 
-Open the "js-analog-clock" folder and open the "index.html" file in your web browser.
+# Switching Between Databases
 
-Note: Some browsers may block the running of JavaScript code when opening a local HTML file directly. To avoid this, you can run a local web server or use a tool like "Live Server" to serve the HTML file.
+To switch between MongoDB and MySQL databases, use the query params ?db=0 for MongoDB and ?db=1 for MySQL.
 
-You should see the analog clock displayed on the web page, showing the current time based on your system clock.
+# APIs
 
-You can customize the clock by editing the CSS and JavaScript files in the repository. For example, you can change the colors, font sizes, or the design of the clock hands.
+This application includes two APIs that are published in other repositories:
+
+    task-manager-api: This API manages tasks for the application. It is available at https://github.com/tugraturkseven/task-manager-api.
+    task-manager-api-mysql: This API manages tasks for the application using a MySQL database. It is available at https://github.com/tugraturkseven/task-manager-api-mysql.
+
+# Contributing
+
+Contributions are welcome! Please feel free to submit a pull request or open an issue if you find any bugs or have any suggestions for improvements.
+
+# Contact
+
+If you have any questions or comments about this project, please feel free to contact me at contact@tugraturkseven.com.
 
 # How it looks.
 
