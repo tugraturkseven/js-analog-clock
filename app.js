@@ -63,7 +63,7 @@ addTask = () => {
         })
             .then((response) => response.json())
             .then((sts) => {
-                console.log("Success");
+                console.log("Başarılı.");
                 readFromDatabase();
             })
             .catch((error) => {
@@ -122,7 +122,7 @@ editTask = (selectedTask) => {
         })
             .then((response) => response.json())
             .then((sts) => {
-                console.log("Success");
+                console.log("Başarılı.");
                 readFromDatabase();
             })
             .catch((error) => {
@@ -190,7 +190,7 @@ deleteTask = (selectedTask) => {
     })
         .then((response) => response.json())
         .then((sts) => {
-            console.log("Success");
+            console.log("Başarılı.");
             readFromDatabase();
         })
         .catch((error) => {
