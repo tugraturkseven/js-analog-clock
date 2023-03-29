@@ -10,16 +10,14 @@ const timeInput = document.getElementById('timeInput');
 const alertAudio = new Audio('assets/alert.mp3.mp3');
 const urlParams = new URLSearchParams(location.search);
 var taskArr = [];
-var portNumber;
+var dbNumber = "db0";
 
 if(urlParams.get('db')==0){
-    portNumber = 8080;
-    console.log(portNumber);
+    dbNumber = "db0";
 }else if(urlParams.get('db')==1){
-    portNumber = 9090;
-    console.log(portNumber);
-}else{
-    console.log('No database selected. Please use query params to choose db.');
+    dbNumber = "db1";
+}else if(urlParams.get('db')!=null){
+    console.log('No valid query param for db. Please choose 0 or 1', urlParams.get('db'));
 }
 
 function setDate() {
@@ -54,7 +52,7 @@ addTask = () => {
             time: timeInput.value,
         };
 
-        fetch(`http://localhost:${portNumber}/api/todos/`, {
+        fetch(`http://localhost:8080/api/todos/${dbNumber}`, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -113,7 +111,7 @@ editTask = (selectedTask) => {
             time: timeEdit.value,
         };
 
-        fetch(`http://localhost:${portNumber}/api/todos/${id}`, {
+        fetch(`http://localhost:8080/api/todos/${dbNumber}/${id}`, {
             method: "PUT",
             body: JSON.stringify(data),
             headers: {
@@ -182,7 +180,7 @@ deleteTask = (selectedTask) => {
     let id = selected.id;
     taskList.removeChild(selected);
 
-    fetch(`http://localhost:${portNumber}/api/todos/${id}`, {
+    fetch(`http://localhost:8080/api/todos/${dbNumber}/${id}`, {
         method: "DELETE",
         headers: {
             "Content-type": "application/json; charset=UTF-8"
@@ -246,16 +244,16 @@ sortTasks = () => {
 // Read tasks from database
 
 readFromDatabase = () => {
-    fetch(`http://localhost:${portNumber}/api/todos/`)
+    fetch(`http://localhost:8080/api/todos/${dbNumber}`)
         .then((response) => response.json())
         .then((sts) => {
             taskArr = [];
-            if(portNumber==8080){
+            if(dbNumber=="db0"){
                 sts.todos.forEach((item) => {
                     const task = createTask(item._id, item.task, item.time)
                     taskArr.push(task);
                 })
-            }else if(portNumber==9090){
+            }else if(dbNumber=="db1"){
                 sts.forEach((item) => {
                     const task = createTask(item.id, item.task, item.time)
                     taskArr.push(task);
